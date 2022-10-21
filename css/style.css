@@ -3,7 +3,13 @@
 .bg-pink{ background-color: #D3817A;}
 .bg-yellow{ background-color: #FFE085;}
 .bgGreen{
-  background: no-repeat url("../image/bg_green_00403D.png");
+  background: center / contain no-repeat url("../image/Vector2.png"),
+  no-repeat url("../image/Vector3.png"),
+  no-repeat url("../image/Vector4.png"),
+  no-repeat url("../image/Vector5.png"),
+  no-repeat url("../image/Vector6.png"),
+  35% 30%/35% no-repeat url("../image/name1.png");
+  background-color: #00403D;
 }
 
 /* 폰트 설정 */
