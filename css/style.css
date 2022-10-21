@@ -13,6 +13,7 @@
 }
 
 /* 폰트 설정 */
+.text-yellow{color: #FFE085;}
 .mainText{
   color: #ffffff;
   font-size: calc(4rem + 5.5vw);
@@ -21,18 +22,35 @@
 }
 
 /* 여백설정 */
-.mt-10{
-  margin-top: 10rem;
-}
+.mt-10{ margin-top: 10rem;}
+.my-10{ margin-top: 10rem; margin-bottom: 10rem;}
 
-
-section{
-  position: relative;
-}
+/* 상단 섹션 */
+section{  position: relative;}
 section .btn{
   position: absolute;
   top: 67%;
   right: 2%;
   width: 360px;
   color: #fff;
+}
+.circleSet{
+  position: absolute;
+  top: 5%;
+  right: 1%;
+  width: 20%;
+}
+
+/*** About ***/
+.img-twice::before {
+  position: absolute;
+  content: "";
+  width: 60%;
+  height: 80%;
+  top: 10%;
+  left: 20%;
+  background: #EAA636;
+  border: 25px solid #FDF5EB;
+  border-radius: 6px;
+  z-index: -1;
 }
