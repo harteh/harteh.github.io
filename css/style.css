@@ -1,0 +1,32 @@
+/* 배경색 설정 */
+.bg-green{  background-color: #00403D;}
+.bg-pink{ background-color: #D3817A;}
+.bg-yellow{ background-color: #FFE085;}
+.bgGreen{
+  background: no-repeat url("../image/bg_green_00403D.png");
+}
+
+/* 폰트 설정 */
+.mainText{
+  color: #ffffff;
+  font-size: calc(4rem + 5.5vw);
+  font-weight: bold;
+  line-height: 0.9;
+}
+
+/* 여백설정 */
+.mt-10{
+  margin-top: 10rem;
+}
+
+
+section{
+  position: relative;
+}
+section .btn{
+  position: absolute;
+  top: 67%;
+  right: 2%;
+  width: 360px;
+  color: #fff;
+}
