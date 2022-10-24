@@ -15,7 +15,7 @@
 /* 폰트 설정 */
 .text-yellow{color: #FFE085;}
 .mainText{
-  color: #ffffff;
+  color: var(--bs-white);
   font-size: calc(4rem + 5.5vw);
   font-weight: bold;
   line-height: 0.9;
@@ -32,7 +32,7 @@ section .btn{
   top: 67%;
   right: 2%;
   width: 360px;
-  color: #fff;
+  color: var(--bs-white);
 }
 .circleSet{
   position: absolute;
@@ -40,6 +40,15 @@ section .btn{
   right: 1%;
   width: 20%;
 }
+
+/* 프로필 */
+.icon{ 
+  font-size: 3rem; 
+  color: var(--bs-gray-600);
+}
+
+
+
 
 /*** About ***/
 .img-twice::before {
@@ -53,4 +62,15 @@ section .btn{
   border: 25px solid #FDF5EB;
   border-radius: 6px;
   z-index: -1;
+}
+
+/* top 버튼 */
+a#topBtn { 
+	position: fixed;
+	right: 2%;
+	bottom: 1rem;
+	display: none;
+	z-index: 9999;
+  font-size: 3rem; 
+  color: #FFE085;
 }
