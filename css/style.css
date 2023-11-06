@@ -88,3 +88,5 @@ body.modal_in {overflow-y:scroll; /* overflow: hidden;*/}
 .modal_wrap .modal_cnt .modal_header {padding-bottom:5px; border-bottom:1px solid #ddd; }
 .modal_wrap .modal_cnt .modal_body {padding-top:20px;}
 .fake_sjwidth {overflow: scroll; position: absolute; top: -99999px; width: 60px; height: 60px;}
+
+#chat_iframe {width: 100%; height: 500px; overflow-x:hidden;}

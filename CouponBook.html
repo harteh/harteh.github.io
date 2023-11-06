@@ -1,0 +1,682 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>CouponBook.shop (기한임박 쿠폰 거래 사이트)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="c41b67f9-1553-416c-8441-075fa262fc47" class="page sans"><header><img class="page-cover-image" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/main01.png" style="object-position:center 42.86%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">📒</span></div><h1 class="page-title">CouponBook.shop (기한임박 쿠폰 거래 사이트)</h1></header><div class="page-body"><p id="7d8957ab-ad47-4b78-9c5e-1e722ae177c5" class="">
+</p><h2 id="8504e203-dd53-4c36-a9f0-31ef49fa8b17" class="">🗒️ 프로젝트 소개</h2><hr id="62020758-6504-40a7-9c20-aa0225faae65"/><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7ab9b988-afa2-43f9-9d46-fc3886eddb59"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">애매모호한 e쿠폰 환불 표기, 명확한 안내가 없어 처리되지 않는 쿠폰이 늘어나고 있다. 
+기간 만료 등의 이유로 사용되지 못한 상품권의 금액이 한 해 94억원에 달한다.(2019년 기준)</div></figure><div id="153cfcb4-addd-4306-84d3-9d715caacb3a" class="column-list"><div id="ec80431f-b792-4ad7-b94b-8cb3a83da452" style="width:68.75%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="6d028f22-96dc-4cc4-97c2-b7538358347f"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%">코로나 이후 e쿠폰 시장이 급성장 하였으나, e쿠폰을 대상의 중고 거래 시장은 아직 많지 않은 상황이다. 
+
+이러한 상황에서 유효기간이 임박한 e쿠폰만을 대상으로 한 사이트라면, 정확한 목표층을 겨냥하고 고정적인 이용객을 확보 할 수 있을 것이다.</div></figure></div><div id="ee487065-dbba-4f21-851b-85e6b8a90abe" style="width:31.25%" class="column"><blockquote id="4ba3f4c2-7fc4-4878-9914-2bce6487be92" class="">🎚️<strong> 목차</strong><nav id="7163f6a3-e169-48da-9a4b-4cce409b0776" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8504e203-dd53-4c36-a9f0-31ef49fa8b17">🗒️ 프로젝트 소개</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#35a5455f-090d-4917-b914-943225dfcb8e">🛠️ <mark class="highlight-gray"><code>개발 환경</code></mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1960a0cd-4d85-469f-980c-b594af12a63d">💿 <mark class="highlight-gray"><code>데이타베이스</code></mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6377450a-dab9-49b4-b67e-f80f4697145e">💿 구현 기능</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#8dcfcd13-6bd2-46d4-9361-b8b623442bda">👉 로그인 기능 </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5a637513-c6a7-4f95-ba10-34f71d29e78a">👉 회원가입 기능 </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ce2bfe39-8f2a-43d2-99ea-110b88faf465">👉 인터셉터 기능 활용 </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fc95fd83-485d-4b25-a0b7-ae771fa8cca2">👉 관리자 페이지 </a></div></nav></blockquote></div></div><p id="6dd49f54-be32-4e85-b9d7-04d05034759c" class="">
+</p><h2 id="35a5455f-090d-4917-b914-943225dfcb8e" class="">🛠️ <mark class="highlight-gray"><code>개발 환경</code></mark></h2><hr id="c20b36c3-b121-4438-9869-84ee3885f626"/><div id="3b91b2bd-eb62-439f-a33a-fa77ac529a41" class="column-list"><div id="ecd1981a-b440-4b14-bae2-fc0d45439ef8" style="width:33.33333333333333%" class="column"><p id="f975291b-6c67-4612-827b-a5ef1a785da9" class="">✔️ <strong>Java</strong></p><p id="2f52f2fa-476f-4878-8f12-3f2a73a9527e" class="">✔️ <strong>JSP</strong></p><p id="84c076ad-2739-4a5d-94d2-6805a7caf185" class="">✔️ <strong>MyBatis</strong></p></div><div id="fce2607d-b7b1-4781-9950-93debc37d01d" style="width:33.33333333333333%" class="column"><p id="14699236-4c67-42a7-a4f5-ded14ad0d13f" class="">⚙️ <strong>Spring Legacy</strong></p><p id="a5d7c162-da12-4afe-a92a-c9f31f594dab" class="">⚙️ <strong>Oracle</strong></p><p id="1d789283-4793-4735-b40c-e14d5953430a" class="">⚙️ <strong>Apache Tomcat</strong></p></div><div id="9801c329-4712-4fbf-bf80-e5325f27c6cd" style="width:33.33333333333333%" class="column"><p id="dfd9af4a-14b1-4048-977a-5948163faeb7" class="">🖋️ <strong>GitHub</strong></p><p id="04159b47-5299-4e33-8131-ab4663842b5b" class="">🖋️ <strong>Bootstrap</strong></p><p id="055243be-db90-4eac-85f4-df5c8177e917" class=""><strong>🖋️ Html5, css3, jQuery</strong></p><p id="878e1138-ff57-4ab1-8f6d-dea55d039ae0" class=""><strong>🖋️ Adobe photoshop</strong></p></div></div><p id="c70be762-66ab-4884-86bd-e0f6940ba9eb" class="">
+</p><h2 id="1960a0cd-4d85-469f-980c-b594af12a63d" class="">💿 <mark class="highlight-gray"><code>데이타베이스</code></mark></h2><hr id="18727419-353f-4d16-9a55-d10257be5b3e"/><figure id="5da9f93c-006a-4565-8147-9c8b0a0bb267" class="image"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/db.png"><img style="width:1983px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/db.png"/></a></figure><p id="307ea3b2-897d-4083-8716-fc809f13501a" class="">
+</p><h2 id="6377450a-dab9-49b4-b67e-f80f4697145e" class="">💿 구현 기능</h2><hr id="606f3be5-dbfd-4790-9927-1d2ca6626e45"/><h3 id="8dcfcd13-6bd2-46d4-9361-b8b623442bda" class="">👉 로그인 기능 </h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e6fd4e0b-0d15-4092-81e4-12b6811b6d41"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%">카카오API를 이용한 카카오로 로그인과 사이트 가입을 통한 로그인 구분</div></figure><div id="5dfd1414-060c-46f7-aceb-4acfa80a958d" class="column-list"><div id="1d34153c-9219-48ab-a262-7768609e2195" style="width:50%" class="column"><figure id="230d85c8-1e72-40d2-9058-7b5850773b00" class="image" style="text-align:center"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/login1.png"><img style="width:578px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/login1.png"/></a><figcaption>사이트 적용 화면</figcaption></figure></div><div id="0caaea5c-56b5-42c1-9c61-557ddfe54e4f" style="width:50%" class="column"><figure id="33d1d38c-7200-4318-a632-7d2a9afee267" class="image"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_login.gif"><img style="width:1014px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_login.gif"/></a><figcaption>일반 로그인 기능 구현</figcaption></figure><ul id="43b4014f-94f7-468e-9940-092ee04dc96a" class="bulleted-list"><li style="list-style-type:disc">이메일을 PK로 설정, 고유값으로 가진다</li></ul><ul id="18b95218-e0b1-4578-a2ae-5b66200d6aa7" class="bulleted-list"><li style="list-style-type:disc">로그인 성공 시 정보를 세션에 저장하여 마이페이지로 이동 시킨다</li></ul><ul id="aa5eddf8-4987-41d3-a7f9-48a62a292ebb" class="bulleted-list"><li style="list-style-type:disc">관리자 등급으로 설정된 아이디로 로그인 시 <a href="https://www.notion.so/CouponBook-shop-c41b67f91553416c8441075fa262fc47">관리자 페이지</a>로 이동 시킨다</li></ul></div></div><p id="742998e9-cab9-4ca0-8de3-3115960bbf85" class="">
+</p><p id="451416ce-327f-47df-b2e1-220c9589b62d" class=""><strong>💡 카카오 아이디로 로그인</strong></p><div id="aa590e66-cc68-4a1b-8228-9c2346791caa" class="column-list"><div id="560a41fd-9a1e-4d93-bf13-5151c2f4ce65" style="width:50%" class="column"><figure id="16f8506c-251a-4227-8ad9-35cc2838f7a3" class="image"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_kakaoLogin.gif"><img style="width:1014px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_kakaoLogin.gif"/></a><figcaption>카카오 API를 이용한 로그인 구현</figcaption></figure></div><div id="8247e616-d3c5-4b86-9932-d7dd16f6195c" style="width:50%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="72c961a7-c4d5-4d68-9695-b71f75635d6f"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%">카카오 로그인 성공 시 이메일과 닉네임을 받아와 회원 DB에 저장, 회원가입 되도록 구현.</div></figure></div></div><p id="03aad51d-383c-40b3-ae06-afeae11b8052" class="">
+</p><h3 id="5a637513-c6a7-4f95-ba10-34f71d29e78a" class="">👉 회원가입 기능 </h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="9eb6db2e-2896-4516-94db-e40d87dd7c91"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%">데이터 검증과 API활용<ul id="07c35dc8-4319-4e90-bd1b-da956efd4b9a" class="bulleted-list"><li style="list-style-type:disc">ajax를 이용해서 이메일 중복 체크</li></ul><ul id="6887d71a-92d5-45cb-b888-c40d859a2969" class="bulleted-list"><li style="list-style-type:disc">자바스크립트를 이용하여 가입 폼 데이터 검증</li></ul><ul id="7b1269da-5496-499b-95c8-c571f2addb49" class="bulleted-list"><li style="list-style-type:disc">카카오 우편번호 API로 주소 검색 후 입력 처리</li></ul></div></figure><div id="0b32a18a-cf85-42c5-95b5-f66f58c8328d" class="column-list"><div id="8dfce1c3-675a-4d94-bc8c-dc6f4920f2c0" style="width:56.25%" class="column"><figure id="1b3c0cd6-399b-49e9-8f46-de3979ebfa8d" class="image"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_join1.gif"><img style="width:1014px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_join1.gif"/></a><figcaption>회원가입 데이터 검증 화면</figcaption></figure></div><div id="fb19228e-e0e6-4068-a33a-de9cdd1b425d" style="width:43.75%" class="column"><figure id="142638d4-0ec3-415b-98c8-20c16b47a4bc" class="image"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/join2_zip.png"><img style="width:734px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/join2_zip.png"/></a></figure><figure id="38c6cccd-d9f1-417b-a47e-a76ff06d3ba7" class="image"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/join3_var.png"><img style="width:631px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/join3_var.png"/></a><figcaption>회원 가입 검증 화면</figcaption></figure></div></div><p id="80005d36-ca22-49c4-81d2-759970a974d1" class="">
+</p><h3 id="ce2bfe39-8f2a-43d2-99ea-110b88faf465" class="">👉 인터셉터 기능 활용 </h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="7bf9f81b-f6ad-495e-91af-0b7669c92cf7"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%">HandlerInterceptor를 상속받아 관리자가 아닌 이용자의 비정상적인 접근을 차단<ul id="b835bb6f-c337-491c-9749-983543a9aea4" class="bulleted-list"><li style="list-style-type:disc">컨트롤러에서 에러 메시지를 받아와서 경고창에 띄움</li></ul><ul id="a187365a-f124-495b-a1a5-98a80f6cdcf5" class="bulleted-list"><li style="list-style-type:disc">페이지는 history.back()으로 뒤로가기 처리</li></ul></div></figure><figure id="e983ed16-363d-4c57-a860-c2617cfe3bb4" class="image"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_adminIntercepter.gif"><img style="width:1014px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_adminIntercepter.gif"/></a></figure><p id="240ddc64-a25f-48d2-a3c9-80c64620055d" class="">
+</p><h3 id="fc95fd83-485d-4b25-a0b7-ae771fa8cca2" class="">👉 관리자 페이지 </h3><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="76a1691e-ad21-4c56-9627-5927016fed12"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%">로그인 시 회원 등급으로 구분하여 접근여부 설정<ul id="5cb99a33-2142-4134-b178-02ada8f1451d" class="bulleted-list"><li style="list-style-type:disc">1주일간의 거래내역 목록 출력, 상단에 요일별 거래건수를 그래프로 구현</li></ul><ul id="83c87afa-82f7-4ddb-8c0e-e3bfe9892707" class="bulleted-list"><li style="list-style-type:disc">전체 거래내역 출력, 거래 일시 검색 기능 구현, 페이징 </li></ul></div></figure><figure id="4a36929b-b54b-4267-93b1-17bf05c7e753" class="image"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_adminTrdList.gif"><img style="width:1384px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_adminTrdList.gif"/></a><figcaption>관리자 메인, 거래내역 목록 화면</figcaption></figure><div id="71485c14-70e8-4139-8a03-3982f3795e72" class="column-list"><div id="797a60fd-3434-4e07-9de7-0fd0ecff5d92" style="width:62.5%" class="column"><figure id="38ca8413-09d3-47ec-be52-fd96bc7834b5" class="image"><a href="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_adminMemberList.gif"><img style="width:1383px" src="CouponBook%20shop%20(%E1%84%80%E1%85%B5%E1%84%92%E1%85%A1%E1%86%AB%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%87%E1%85%A1%E1%86%A8%20%E1%84%8F%E1%85%AE%E1%84%91%E1%85%A9%E1%86%AB%20%E1%84%80%E1%85%A5%E1%84%85%E1%85%A2%20%E1%84%89%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%90%E1%85%B3)%20c41b67f91553416c8441075fa262fc47/pj_adminMemberList.gif"/></a><figcaption>관리자 회원 목록 화면</figcaption></figure></div><div id="833cdc4b-f06a-406e-b81d-426ac43e85ab" style="width:37.5%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="d3cdc451-86e5-41f0-8645-eefdc31329fd"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%">전체 회원 목록<ul id="3ae68383-3e20-4e58-b503-6685cf85483f" class="bulleted-list"><li style="list-style-type:disc">이메일, 닉네임, 이름으로 검색 기능 구현</li></ul><ul id="f634ae7e-2bbc-43ae-9db3-17db05016419" class="bulleted-list"><li style="list-style-type:disc">회원정보 상세보기 구현</li></ul><ul id="d70770d0-2534-4ee4-9302-e0a9458ed3b7" class="bulleted-list"><li style="list-style-type:disc">목록 페이징 처리 </li></ul></div></figure><p id="87666237-6e60-45bf-b671-17116891b945" class="">
+</p></div></div><p id="748e8955-87ac-4126-bf69-27b7e7c68ee6" class="">
+</p></div></article></body></html>

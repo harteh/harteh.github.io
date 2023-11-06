@@ -13,7 +13,6 @@ $(function() { // 보이기 | 숨기기
   });
   
 
-
   // 모달 설정
   var sjModal = function(){
     $body = $('body');
