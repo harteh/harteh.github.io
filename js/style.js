@@ -14,7 +14,7 @@ $(function() { // 보이기 | 숨기기
   
 
   // 모달 설정
-  var sjModal = function(){
+/*   var sjModal = function(){
     $body = $('body');
     $modalWrap = $('.modal_wrap');
 
@@ -43,14 +43,8 @@ $(function() { // 보이기 | 숨기기
           body.removeChild(scrollDiv);
           return scrollbarWidth;
     }
-  }();
+  }(); */
   //모달 설정 End
-
-
-
-
-
-
 
 
 });
