@@ -48,8 +48,6 @@ section .btn{
 }
 
 
-
-
 /*** About ***/
 .img-twice::before {
   position: absolute;
@@ -63,6 +61,15 @@ section .btn{
   border-radius: 6px;
   z-index: -1;
 }
+
+
+
+/* 1108 갤러리 버튼 설정 추가 */
+.btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
+	border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
 
 /* top 버튼 */
 a#topBtn { 
