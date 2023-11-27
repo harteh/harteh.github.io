@@ -1,4 +1,6 @@
 /* 배경색 설정 */
+.bg-primary{ background-color: #EAA636 !important;}
+.bg-light { background-color: #FDF5EB !important;}
 .bg-green{  background-color: #00403D;}
 .bg-pink{ background-color: #D3817A;}
 .bg-yellow{ background-color: #FFE085;}
@@ -12,11 +14,20 @@
   background-color: #00403D;
 }
 
+.border-primary {  border-color: #EAA636 !important;}
+
 /* 폰트 설정 */
-.text-yellow{color: #FFE085;}
+.text-primary { color: #EAA636 !important;}
+.text-yellow{ color: #FFE085;}
 .mainText{
   color: var(--bs-white);
   font-size: calc(4rem + 5.5vw);
+  font-weight: bold;
+  line-height: 0.9;
+}
+.text-title{
+  color: #00403D;
+  font-size: 1rem;
   font-weight: bold;
   line-height: 0.9;
 }
@@ -68,6 +79,34 @@ section .btn{
 .btn-group>.btn:not(:last-child):not(.dropdown-toggle) {
 	border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
+}
+
+/*** 1127 Project Note ***/
+.img-note { cursor: pointer;}
+
+.product-item {  transition: .5s;}
+.product-item:hover {  background: #EAA636 !important;}
+.product-item:hover * {  color: #FDF5EB;}
+.product-item:hover .border-primary {  border-color: #FDF5EB !important;}
+
+.product-item .product-overlay {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .5);
+  overflow: hidden;
+  opacity: 0;
+  transition: .5s;
+}
+
+.product-item:hover .product-overlay {
+  height: 100%;
+  opacity: 1;
 }
 
 
