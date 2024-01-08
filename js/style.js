@@ -11,6 +11,24 @@ $(function() { // 보이기 | 숨기기
   	}, 400); // 속도 400 
     return false; 
   });
+
+  //연락처 복사설정
+  //contact me-copied 복사하기
+  function copyToClipboard(val) {
+      var t = document.createElement("textarea");
+      document.body.appendChild(t);
+      t.value = val;
+      t.select();
+      document.execCommand('copy');
+      document.body.removeChild(t);
+  }
+  $('.contact').find("#emailAddress").on("click",function () {
+      $(".copied").fadeIn().promise().done(function(){
+          this.fadeOut();
+      })
+      copyToClipboard('harteh31@gmail.com')
+      
+  });
   
 
   // 모달 설정
