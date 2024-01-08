@@ -112,7 +112,7 @@ section .btn{  position: absolute;  top: 67%;  right: 2%;  width: 360px;  color:
 
 
 /* top 버튼 */
-a#topBtn { 
+aside { 
 	position: fixed;
 	right: 2%;
 	bottom: 1rem;
@@ -120,6 +120,12 @@ a#topBtn {
 	z-index: 9999;
   font-size: 3rem; 
   color: #FFE085;
+}
+
+/* 모바일사이즈 */
+@media (max-width: 767px){
+  .mainText { font-size: calc(4rem + 1.5vw); }
+  aside { right: 5%; }
 }
 
 .modal_por { position: relative;}
