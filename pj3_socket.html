@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>소켓을 이용한 경매시스템</title>
+  <link rel="stylesheet" href="css/pj_modal.css">  
+</head>
+<body>
+  <h2>💿 <mark class="highlight-gray"><code>소켓기능</code></mark> </h2>
+  <hr />
+  <p><strong>서버 실행</strong></p>
+  <ol type="1" class="numbered-list" start="1">
+    <li>클라이언트가 포트를 통해 연결되며 서버 스레드 생성(다중접속 지원)</li>
+  </ol>
+  <ol type="1" class="numbered-list" start="2">
+    <li>클라이언트가 auctionstart를 서버에 전송하면 경매진행 담당 새 스레드 생성(1초마다 반복)</li>
+  </ol>
+  <ol type="1" class="numbered-list" start="3">
+    <li>경매진행상황을 실시간으로 클라이언트에 접속</li>
+  </ol>
+  <ol type="1" class="numbered-list" start="4">
+    <li>전송된 가격데이터로 경매가를 조정, 경매 남은 시간을 재설정한다</li>
+  </ol>
+  <ol type="1" class="numbered-list" start="5">
+    <li>경매종료 후 클라이언트 정보와 경매로그를 DB에 기록하고 블록체인을 위한 초기 블록을 생성한다</li>
+  </ol>
+  <figure  class="image">
+    <a href="image/pj3_swing/socket01.png">
+      <img style="width:1186px" src="image/pj3_swing/socket01.png"/>
+    </a>
+  </figure>
+  <div class="column-list">
+    <div class="column">
+      <figure class="image">
+        <a href="image/pj3_swing/socket02.png">
+          <img style="width:744px" src="image/pj3_swing/socket02.png"/>
+        </a>
+      </figure>
+    </div>
+    <div class="column">
+      <p>  </p>
+    </div>
+  </div>
+</body>
+</html>

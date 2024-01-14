@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>블록체인 기능 구현</title>
+  <link rel="stylesheet" href="css/pj_modal.css">  
+</head>
+<body>
+  <h2>💿 <mark class="highlight-gray"><code>블록체인 기능</code></mark> </h2>
+  <hr/>
+  <p><strong>경매 종료</strong></p>
+  <ol type="1" class="numbered-list" start="1">
+    <li>초기블럭 생성
+      <ol type="a" class="numbered-list" start="1">
+        <li>경매고유번호를 기본값(16진수 문자열, 해쉬값)으로 저장</li>
+      </ol>
+    </li>
+  </ol>
+  <ol type="1" class="numbered-list" start="2">
+    <li>클라이언트는 접속과 동시에 블록 생성 스레드 호출</li>
+  </ol>
+  <ol type="1" class="numbered-list" start="3">
+    <li>가장 최근의 블록의 해쉬값을 가져와 또다른 16진수 문자열을 만든다</li>
+  </ol>
+  <ol type="1" class="numbered-list" start="4">
+    <li>이전 블록의 해쉬값을 포함하고 있기 때문에 블록들이 연결되어 있음을 알 수 있다</li>
+  </ol>
+  <div class="column-list">
+    <div class="column">
+      <figure class="image">
+        <a href="image/pj3_swing/block01.png">
+          <img style="width:539px" src="image/pj3_swing/block01.png"/>
+        </a>
+      </figure>
+    </div>
+    <div class="column">
+      <figure class="image">
+        <a href="image/pj3_swing/block02.png">
+          <img style="width:537px" src="image/pj3_swing/block02.png"/>
+        </a>
+      </figure>
+    </div>
+  </div>
+</body>
+</html>
