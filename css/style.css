@@ -7,7 +7,7 @@
 }
 
 /* 폰트 설정 */
-main .container-xxl, footer{font-family:'S-CoreDream-3Light', '나눔고딕', 'NanumGothic'}
+main .container-xxl, #navbarHeader, footer{font-family:'S-CoreDream-3Light', '나눔고딕', 'NanumGothic'}
 
 .text-primary { color: #EAA636 !important;}
 .text-yellow{ color: #FFE085;}
@@ -54,11 +54,15 @@ section .btn{  position: absolute;  top: 67%;  right: 2%;  width: 360px;  color:
 }
 
 /* 프로필 */
-.icon{ 
-  font-size: 3rem; 
-  color: var(--bs-gray-600);
-}
+.icon{   font-size: 3rem;   color: var(--bs-gray-600); position: relative;}
+.icon:hover>.ballon, .ballon::after { display: block; }
+.ballon {  position: absolute; bottom: 120%; left: -45%; width: 200%; height: 28px; line-height: 25px; text-align: center;  border-radius: 2vw; display: none; font-size: 11px; font-weight: 200; background-color: #00403D; color: #fff; transition: all 2s; }
+.ballon::after {  content: ""; position: absolute; left: 70%; bottom: -5px;  border: 5px solid #00403D; transform: rotate(45deg);}
 
+.gitRepo{
+  font-size: 14px;
+  color:#FDF5EB;
+}
 
 /*** About ***/
 .img-twice::before {
@@ -91,27 +95,16 @@ section .btn{  position: absolute;  top: 67%;  right: 2%;  width: 360px;  color:
 
 .product-item .product-overlay {
   position: absolute;
-  width: 100%;
-  height: 0;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100%;  height: 0;  top: 0;  left: 0;
+  display: flex;  align-items: center;  justify-content: center;
   background: rgba(0, 0, 0, .5);
-  overflow: hidden;
-  opacity: 0;
-  transition: .5s;
-}
+  overflow: hidden;  opacity: 0;  transition: .5s;}
 
-.product-item:hover .product-overlay {
-  height: 100%;
-  opacity: 1;
-}
-
+.product-item:hover .product-overlay {  height: 100%;  opacity: 1;}
 
 /* top 버튼 */
 aside { position: fixed; right: 2%;	bottom: 1rem;	display: none; z-index: 9999; font-size: 3rem; color: #FFE085;}
+aside:hover {cursor: pointer;}
 
 /* 모바일사이즈 */
 @media (max-width: 767px){
@@ -128,3 +121,6 @@ aside { position: fixed; right: 2%;	bottom: 1rem;	display: none; z-index: 9999; 
 .modal_por { position: relative;}
 
 #chat_iframe {width: 100%; height: 600px; overflow-x:hidden;}
+
+footer{ display: flex; align-items: center;}
+.qr>img{width: 60px;}

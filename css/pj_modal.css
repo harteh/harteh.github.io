@@ -211,8 +211,7 @@ blockquote {	font-size: 1.25em;	margin: 1em 0;	padding-left: 1em;	border-left: 3
 
 /* 모바일사이즈 */
 @media (max-width: 767px){
-  .column-list {
-    flex-direction: column;
-  }
+  .column-list { flex-direction: column; }
+	.page-title { font-size: 2rem; }
   
 }
